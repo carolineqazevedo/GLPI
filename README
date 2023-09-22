@@ -1,0 +1,80 @@
+# GLPI com Docker Compose e Persistência de Dados
+
+Este repositório oferece um passo a passo para auxiliar na implementação do GLPI10 com dados persistentes utilizando Docker Compose!
+
+## Passo a Passo
+
+1. **Instalação do Docker:**
+
+    ```bash
+    curl -fsSL https://get.docker.com | sh
+    ```
+
+2. **Instalação do Docker Compose:**
+
+    ```bash
+    curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
+
+    chmod +x /usr/local/bin/docker-compose
+    ```
+
+3. **Configuração de Dados Persistentes:**
+
+    ```bash
+    mkdir opt
+
+    cd /opt 
+
+    git clone https://github.com/carolineqazevedo/GLPI.git
+
+    cd GLPI 
+
+    mkdir -p ./var/www/html/glpi \
+             ./var/lib/mysql
+
+    chown 472:472 ./var/lib/mysql \
+                  ./var/lib/mysql  
+    ```
+
+4. **Executando os Containers:**
+
+    ```bash
+    docker-compose up -d
+    ```
+
+5. **Acesso ao GLPI:**
+
+    Acesse o GLPI em http://<seu_ip>.
+
+## Configuração do GLPI
+
+- **Host:** mysql
+- **Usuário:** glpi_user
+- **Senha:** glpi
+
+## Credenciais de Login no GLPI
+
+- **Usuário:** glpi
+- **Senha:** glpi
+
+## Contas Padrão do GLPI
+
+| Login/Senha   | Nível de Acesso               |
+| ------------  | ------------------- |
+| glpi/glpi     | Conta Admin      |
+| tech/tech     | Conta Técnica       |
+| normal/normal | Conta Normal   |
+| post-only/postonly | Conta Básica |
+
+## Personalização
+
+Você pode personalizar algumas configurações do banco de dados editando o arquivo `mysql.env`. Nele, é possível alterar:
+
+- Senha root do MySQL
+- Nome do Banco de dados do GLPI
+- Usuário do banco de dados
+- Senha do usuário do banco de dados
+
+## Contribuições
+
+Espero que este repositório seja útil para você. Se tiver alguma sugestão ou feedback, Sinta-se à vontade para compartilhar comigo.
